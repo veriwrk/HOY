@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H.O.Y. — Sons of God</title>
+<style>
+:root{
+  --ink:#171412; --cream:#eee3d3; --paper:#f3eadc; --brown:#3a281d; --brown2:#241913;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit;text-decoration:none}
+.site-shell{overflow:hidden}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;border-bottom:1px solid rgba(238,227,211,.16);position:sticky;top:0;z-index:50;background:rgba(23,20,18,.92);backdrop-filter:blur(12px)}
+.brand{font-family:Georgia,serif;font-weight:900;font-size:28px;letter-spacing:-.06em}
+nav{display:flex;gap:28px;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.cart{font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+
+.hero{min-height:760px;display:grid;grid-template-columns:46% 54%;background:radial-gradient(circle at 75% 34%,rgba(118,77,46,.32),transparent 38%),linear-gradient(120deg,#171412 0%,#241913 46%,#311f14 100%)}
+.hero-copy{padding:72px 54px 70px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
+.kicker{font-size:13px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-size:clamp(76px,9vw,150px);line-height:.72;letter-spacing:-.075em;margin:0 0 24px;max-width:720px}
+.hero-sub{font-size:18px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:26px}
+.hero p{font-size:20px;line-height:1.35;max-width:580px;color:#ddd0c0}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:max-content;padding:17px 28px;border:1px solid var(--cream);margin-top:18px;font-size:11px;text-transform:uppercase;letter-spacing:.22em}
+.hero-visual{position:relative;min-height:760px;display:flex;align-items:flex-end;justify-content:center;padding:42px 44px 0;overflow:hidden}
+.hero-visual:before{content:"";position:absolute;width:76%;height:76%;border-radius:50%;background:radial-gradient(circle,rgba(196,147,99,.24),rgba(0,0,0,0) 70%);filter:blur(10px)}
+.portrait-card{width:min(520px,80%);aspect-ratio:4/5;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(0,0,0,.18)),linear-gradient(145deg,#2d211b,#0f0e0d);border:1px solid rgba(238,227,211,.08);box-shadow:0 28px 80px rgba(0,0,0,.42);position:relative;overflow:hidden}
+.silhouette{position:absolute;left:50%;transform:translateX(-50%);bottom:0;width:72%;height:86%;background:radial-gradient(circle at 50% 23%,#171412 0 16%,transparent 17%),radial-gradient(circle at 50% 28%,#1b1816 0 19%,transparent 20%),linear-gradient(180deg,transparent 0 22%,#121110 22% 100%);clip-path:polygon(35% 5%,66% 5%,78% 18%,81% 32%,90% 45%,100% 100%,0 100%,10% 45%,19% 32%,22% 18%)}
+.cap{position:absolute;width:42%;height:10%;left:29%;top:15%;background:#0b0b0b;border-radius:45% 45% 20% 20%}
+.cap:after{content:"H.O.Y.";position:absolute;inset:0;display:grid;place-items:center;color:#d8c3aa;font-family:Georgia,serif;font-weight:800;font-size:22px}
+.books{position:absolute;right:6%;bottom:0;width:44%;display:grid;gap:5px}
+.book{height:42px;border:1px solid rgba(206,174,138,.22);background:#171310;color:#b99870;padding:12px 14px;font-family:Georgia,serif;letter-spacing:.05em;font-size:15px}
+.mug{position:absolute;right:7%;bottom:35%;width:70px;height:110px;background:#111;border-radius:8px;border:1px solid rgba(255,255,255,.08)}
+.mug:after{content:"HOY";position:absolute;bottom:18px;left:0;right:0;text-align:center;color:#ccb18f;font-family:Georgia,serif;font-weight:700}
+.handnote{position:absolute;top:52px;right:22px;transform:rotate(-7deg);font-family:"Brush Script MT",cursive;font-size:34px;line-height:1.05;color:#d8c4ac;opacity:.8}
+
+.anchor{background:var(--paper);color:var(--ink);padding:58px 48px 46px;display:grid;grid-template-columns:1fr 180px;gap:30px;border-bottom:1px solid rgba(23,20,18,.12)}
+.anchor .eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:14px}
+.anchor h2{font-size:clamp(44px,5vw,76px);line-height:.92;letter-spacing:-.05em;margin:0 0 18px}
+.anchor blockquote{margin:0;font-size:22px;line-height:1.35;max-width:880px}
+.anchor cite{display:block;margin-top:18px;font-style:normal;font-size:12px;letter-spacing:.28em;text-transform:uppercase}
+.anchor-side{border-left:1px solid rgba(23,20,18,.35);padding-left:26px;display:flex;align-items:center;font-size:12px;letter-spacing:.26em;text-transform:uppercase;line-height:1.45}
+
+.explore{background:var(--paper);color:var(--ink);padding:26px 36px 54px}
+.explore-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.tool-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.tool-card{min-height:340px;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;color:#f2eadf;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.72)),linear-gradient(145deg,#5a4030,#171412)}
+.tool-card:nth-child(2){background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.72)),linear-gradient(145deg,#33261f,#0d0d0d)}
+.tool-card:nth-child(3){background:linear-gradient(180deg,rgba(0,0,0,.04),rgba(0,0,0,.70)),linear-gradient(145deg,#8b6d50,#332317)}
+.tool-card:nth-child(4){background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.70)),linear-gradient(145deg,#624b3c,#1a1613)}
+.tool-card:nth-child(5){background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.72)),linear-gradient(145deg,#24211f,#0b0b0b)}
+.tool-card h3{font-size:38px;letter-spacing:-.05em;margin:0}
+.tool-card span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:4px}
+.arrow{margin-top:10px;font-size:22px}
+
+.iron{min-height:390px;display:grid;grid-template-columns:60% 40%;background:linear-gradient(90deg,rgba(0,0,0,.3),rgba(0,0,0,.55)),linear-gradient(135deg,#504b48,#1b1a19);position:relative;overflow:hidden}
+.iron:after{content:"";position:absolute;inset:auto -5% -28% 20%;height:78%;background:linear-gradient(145deg,transparent 0 22%,#565350 22% 36%,transparent 36% 44%,#3f3d3b 44% 55%,transparent 55%),linear-gradient(160deg,transparent 0 42%,#2c2b2a 42% 58%,transparent 58%);opacity:.8}
+.iron-copy{padding:54px;position:relative;z-index:2}
+.small{font-size:12px;letter-spacing:.28em;text-transform:uppercase}
+.iron h2{font-size:clamp(58px,7vw,110px);line-height:.76;letter-spacing:-.065em;margin:20px 0 16px}
+.verse{font-size:12px;letter-spacing:.28em;text-transform:uppercase}
+.iron-side{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:56px;position:relative;z-index:2}
+.iron-side p{font-size:24px;line-height:1.25;max-width:280px}
+
+.join{display:grid;grid-template-columns:240px 1fr 240px;gap:36px;background:#191715;padding:38px;align-items:center}
+.phone-card{aspect-ratio:4/5;background:linear-gradient(145deg,#392b21,#111);display:grid;place-items:center;padding:22px;text-align:center;font-family:Georgia,serif;font-size:25px;line-height:1.2}
+.join-copy h3{font-size:44px;margin:10px 0;letter-spacing:-.04em}
+.join-copy p{color:#d8cabb;line-height:1.5;max-width:650px}
+.newsletter{display:flex;gap:8px;margin-top:18px}
+.newsletter input{flex:1;min-width:0;padding:16px 18px;border:none;background:#f0e7da;color:#171412}
+.newsletter button{padding:0 24px;background:transparent;color:var(--cream);border:1px solid var(--cream);letter-spacing:.18em;text-transform:uppercase;font-size:11px}
+.seal{border-left:1px solid rgba(238,227,211,.2);min-height:180px;display:grid;place-items:center;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;line-height:1.6}
+footer{padding:28px 36px 40px;display:flex;justify-content:space-between;color:#b8aa9c;font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-top:1px solid rgba(238,227,211,.12)}
+
+@media(max-width:1000px){
+  .tool-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{grid-template-columns:1fr}
+  .hero-visual{min-height:560px}
+  .join{grid-template-columns:1fr}
+  .phone-card{display:none}
+  .seal{border-left:none;border-top:1px solid rgba(238,227,211,.2);padding-top:24px;min-height:auto}
+}
+@media(max-width:720px){
+  header{padding:0 18px}
+  nav{display:none}
+  .hero-copy{padding:52px 22px 36px}
+  .hero h1{font-size:76px}
+  .hero-sub{font-size:14px}
+  .hero p{font-size:18px}
+  .hero-visual{min-height:480px;padding:0 18px}
+  .portrait-card{width:92%}
+  .anchor{grid-template-columns:1fr;padding:42px 22px}
+  .anchor-side{border-left:none;border-top:1px solid rgba(23,20,18,.3);padding:18px 0 0}
+  .explore{padding:22px 18px 44px}
+  .tool-grid{grid-template-columns:1fr}
+  .tool-card{min-height:300px}
+  .iron{grid-template-columns:1fr}
+  .iron-copy{padding:42px 22px}
+  .iron-side{padding:22px}
+  .join{padding:30px 20px}
+  .newsletter{flex-direction:column}
+  .newsletter button{padding:16px}
+  footer{padding:24px 20px;flex-direction:column;gap:10px}
+}
+
+/* V2: approved image-led Sons of God direction */
+.image-hero{
+  padding:0 !important;
+  min-height:760px;
+  overflow:hidden;
+}
+.image-hero img{
+  width:100%;
+  height:100%;
+  min-height:760px;
+  object-fit:cover;
+  object-position:center;
+}
+.handnote{display:none !important}
+
+.image-tool{
+  position:relative;
+  padding:0 !important;
+  background:#171412 !important;
+  min-height:340px;
+}
+.image-tool > img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.image-tool:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.03) 25%,rgba(0,0,0,.82) 100%);
+}
+.tool-overlay{
+  position:relative;
+  z-index:2;
+  padding:22px;
+  margin-top:auto;
+  width:100%;
+}
+
+.iron-image{
+  position:relative;
+  background:#171412 !important;
+}
+.iron-image > img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.iron-shade{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.68) 0%,rgba(0,0,0,.36) 55%,rgba(0,0,0,.48) 100%);
+  z-index:1;
+}
+.iron-image:after{display:none !important}
+.iron-image .iron-copy,
+.iron-image .iron-side{position:relative;z-index:2}
+
+@media(max-width:720px){
+  .image-hero,
+  .image-hero img{min-height:480px}
+  .image-hero img{object-position:58% center}
+  .image-tool{min-height:330px}
+  .iron-image{min-height:430px}
+}
+
+
+/* V3 exact user-supplied transparent artwork */
+.image-hero{padding:0!important;background:radial-gradient(circle at 70% 35%,rgba(103,70,46,.22),transparent 42%),linear-gradient(135deg,#1a1512,#2a1c14)!important}
+.image-hero img{width:100%;height:100%;object-fit:contain!important;object-position:center bottom!important;background:transparent!important}
+.image-tool{background:linear-gradient(145deg,#493529,#1a1512)!important;padding:0!important}
+.image-tool>img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain!important;object-position:center!important;padding:14px 10px 72px;background:transparent!important}
+.tool-overlay{position:relative;z-index:2;padding:22px;width:100%;margin-top:auto;background:linear-gradient(180deg,transparent,rgba(15,13,12,.90))}
+.iron-image{background:linear-gradient(180deg,#1d1b19,#121110)!important}
+.iron-image>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover!important;object-position:center bottom!important;background:transparent!important}
+.iron-shade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.26) 54%,rgba(0,0,0,.46))!important}
+.iron-image .iron-copy,.iron-image .iron-side{position:relative;z-index:2}
+.phone-image-card{background:transparent!important;padding:0!important;display:flex!important;align-items:center;justify-content:center;overflow:visible}
+.phone-image-card img{width:100%;height:100%;object-fit:contain;background:transparent}
+.handnote{display:none!important}
+
+
+/* Requested Sons of God page fixes */
+.brand{
+  display:flex;
+  align-items:center;
+  line-height:0;
+}
+.brand-logo{
+  display:block;
+  width:92px;
+  height:auto;
+}
+
+/* Remove unwanted brown gaps around the supplied transparent artwork. */
+.tool-card:nth-child(1){
+  background:#e6d6c2 !important;
+}
+.tool-card:nth-child(1) > img{
+  width:122% !important;
+  height:122% !important;
+  left:-11% !important;
+  top:-11% !important;
+  padding:0 !important;
+  object-fit:contain !important;
+}
+
+.tool-card:nth-child(4){
+  background:#a87352 !important;
+}
+.tool-card:nth-child(4) > img{
+  width:118% !important;
+  height:118% !important;
+  left:-9% !important;
+  top:-9% !important;
+  padding:0 !important;
+  object-fit:contain !important;
+}
+
+/* Keep the Overcome artwork fully visible inside its card. */
+.tool-card:nth-child(5) > img{
+  width:94% !important;
+  height:94% !important;
+  left:3% !important;
+  top:1% !important;
+  padding:0 0 66px !important;
+  object-fit:contain !important;
+  object-position:center top !important;
+}
+
+@media(max-width:720px){
+  .brand-logo{width:82px}
+  .tool-card:nth-child(5) > img{
+    width:92% !important;
+    height:92% !important;
+    left:4% !important;
+  }
+}
+
+
+/* V4 requested corrections only */
+
+/* Keep every Explore card on the original dark-brown Sons of God palette. */
+.tool-card,
+.image-tool,
+.tool-card:nth-child(1),
+.tool-card:nth-child(2),
+.tool-card:nth-child(3),
+.tool-card:nth-child(4),
+.tool-card:nth-child(5){
+  background:#2a1c14 !important;
+}
+
+/* Do not force READ or WEAR onto lighter backgrounds. */
+.tool-card:nth-child(1) > img,
+.tool-card:nth-child(4) > img{
+  background:transparent !important;
+}
+
+/* Show the complete OVERCOME artwork above its text overlay. */
+.tool-card:nth-child(5) > img{
+  inset:12px 16px 92px 16px !important;
+  width:calc(100% - 32px) !important;
+  height:calc(100% - 104px) !important;
+  padding:0 !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+
+/* Show the entire lower-left phone artwork without cropping. */
+.phone-image-card{
+  aspect-ratio:auto !important;
+  min-height:320px !important;
+  height:auto !important;
+  overflow:visible !important;
+}
+.phone-image-card img{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  max-height:340px !important;
+  object-fit:contain !important;
+  object-position:center !important;
+}
+
+@media(max-width:1000px){
+  .phone-image-card{
+    display:flex !important;
+    min-height:300px !important;
+  }
+  .phone-image-card img{
+    max-height:320px !important;
+  }
+}
+
+@media(max-width:720px){
+  .tool-card:nth-child(5) > img{
+    inset:10px 14px 94px 14px !important;
+    width:calc(100% - 28px) !important;
+    height:calc(100% - 104px) !important;
+  }
+}
+
+
+/* V5 targeted visual corrections */
+
+/* Keep OVERCOME text fully contained within the card. */
+.tool-card:nth-child(5){
+  overflow:hidden !important;
+}
+.tool-card:nth-child(5) .tool-overlay{
+  padding:18px 16px 18px !important;
+}
+.tool-card:nth-child(5) h3{
+  font-size:clamp(26px,2.35vw,34px) !important;
+  line-height:.92 !important;
+  letter-spacing:-.045em !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  max-width:100% !important;
+}
+.tool-card:nth-child(5) span{
+  font-size:10px !important;
+  line-height:1.2 !important;
+  letter-spacing:.14em !important;
+  white-space:normal !important;
+  max-width:100% !important;
+}
+
+/* Show the complete bottom-left image without cropping. */
+.phone-image-card{
+  min-height:0 !important;
+  height:auto !important;
+  aspect-ratio:auto !important;
+  overflow:visible !important;
+  align-items:flex-start !important;
+}
+.phone-image-card img{
+  width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  object-fit:contain !important;
+  object-position:center top !important;
+  display:block !important;
+}
+
+@media(max-width:1000px){
+  .phone-image-card{
+    display:flex !important;
+    min-height:0 !important;
+  }
+  .phone-image-card img{
+    width:min(100%,520px) !important;
+    margin:0 auto !important;
+  }
+}
+
+@media(max-width:720px){
+  .tool-card:nth-child(5) .tool-overlay{
+    padding:16px 14px 16px !important;
+  }
+  .tool-card:nth-child(5) h3{
+    font-size:32px !important;
+  }
+}
+
+
+/* V6: uniform Explore heading typography */
+.tool-card h3,
+.tool-card:nth-child(1) h3,
+.tool-card:nth-child(2) h3,
+.tool-card:nth-child(3) h3,
+.tool-card:nth-child(4) h3,
+.tool-card:nth-child(5) h3{
+  font-size:clamp(26px,2.35vw,34px) !important;
+  line-height:.92 !important;
+  letter-spacing:-.045em !important;
+  white-space:normal !important;
+  max-width:100% !important;
+}
+
+@media(max-width:720px){
+  .tool-card h3,
+  .tool-card:nth-child(1) h3,
+  .tool-card:nth-child(2) h3,
+  .tool-card:nth-child(3) h3,
+  .tool-card:nth-child(4) h3,
+  .tool-card:nth-child(5) h3{
+    font-size:32px !important;
+  }
+}
+
+
+/* V8: seamless hero blend + restore true black cap */
+
+/* Unify the left Sons of God panel and right hero visual onto one continuous brown field. */
+.hero{
+  background:linear-gradient(120deg,#171412 0%,#211711 42%,#2a1c14 100%) !important;
+}
+.hero-copy,
+.hero-visual{
+  background:transparent !important;
+}
+.image-hero{
+  background:transparent !important;
+  position:relative;
+}
+.image-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(23,20,18,.95) 0%,rgba(23,20,18,.62) 10%,rgba(23,20,18,0) 26%),
+    linear-gradient(180deg,rgba(42,28,20,.08),rgba(42,28,20,.08));
+  pointer-events:none;
+  z-index:1;
+}
+.image-hero img{
+  position:relative;
+  z-index:0;
+  filter:contrast(1.08) brightness(.96) saturate(1.03);
+}
+
+/* Keep the hat reading as true black rather than washed by the brown treatment. */
+.image-hero{
+  isolation:isolate;
+}
+.image-hero::after{
+  content:"";
+  position:absolute;
+  left:18%;
+  top:8%;
+  width:42%;
+  height:34%;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.22) 0%,rgba(0,0,0,.12) 45%,rgba(0,0,0,0) 72%);
+  mix-blend-mode:multiply;
+  pointer-events:none;
+  z-index:2;
+}
+
+@media(max-width:1000px){
+  .image-hero::before{
+    background:linear-gradient(180deg,rgba(23,20,18,.12),rgba(23,20,18,0) 20%);
+  }
+  .image-hero::after{
+    left:16%;
+    top:7%;
+    width:48%;
+    height:30%;
+  }
+}
+
+
+/* V9: remove hero blotches while preserving the seamless blend */
+.image-hero::after{
+  content:none !important;
+  display:none !important;
+}
+.image-hero img{
+  filter:contrast(1.08) brightness(.96) saturate(1.03) !important;
+}
+
+
+/* V10: remove remaining hero smudge layers */
+.image-hero::before,
+.image-hero::after,
+.hero-visual::before{
+  content:none !important;
+  display:none !important;
+  background:none !important;
+  filter:none !important;
+}
+
+
+/* Mobile fix: show the full Iron Sharpens Iron image */
+@media(max-width:720px){
+  .iron-image,
+  .iron-card,
+  .iron-visual{
+    overflow:visible !important;
+    min-height:0 !important;
+    height:auto !important;
+  }
+
+  .iron-image img,
+  .iron-card img,
+  .iron-visual img{
+    width:100% !important;
+    height:auto !important;
+    max-height:none !important;
+    object-fit:contain !important;
+    object-position:center center !important;
+    display:block !important;
+  }
+}
+
+</style>
+<style>
+.brand-logo{height:26px!important;width:auto!important;max-width:none!important}
+</style>
+<style>
+@media(max-width:720px){
+  .hero h1{font-size:clamp(58px,16vw,82px)!important;line-height:.78!important}
+  .anchor h2{font-size:clamp(40px,11vw,58px)!important}
+  .tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .tool-card{min-height:260px!important}
+  .tool-card h3{font-size:30px!important}
+  .iron h2{font-size:clamp(48px,13vw,74px)!important;line-height:.8!important}
+}
+</style>
+
+<style>
+.site-menu-btn{
+  display:none;
+  width:46px;height:46px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  background:transparent;
+  padding:0;
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:5px;
+  color:inherit;
+}
+.site-menu-btn span{display:block;width:20px;height:1.5px;background:currentColor}
+.site-mobile-menu{
+  display:none;
+  position:fixed;
+  top:76px;left:0;right:0;
+  z-index:49;
+  background:rgba(17,16,15,.98);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.10);
+  padding:18px 22px 24px;
+}
+.site-mobile-menu a{
+  display:block;
+  padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  font:600 12px/1.2 Arial,Helvetica,sans-serif;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.site-mobile-menu.open{display:block}
+@media(max-width:800px){
+  header nav{display:none!important}
+  .site-menu-btn{display:flex!important}
+}
+</style>
+
+
+<style>
+/* SOG MOBILE — RESTORED ORIGINAL TEXT POSITION + COHESIVE CARD TYPE */
+@media(max-width:720px){
+
+  /* Keep the 2 x 2 Explore grid neat and equal */
+  .tool-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+    align-items:stretch !important;
+  }
+
+  .tool-card{
+    min-height:260px !important;
+    height:100% !important;
+  }
+
+  /* Restore the original lower text position */
+  .tool-card .tool-overlay{
+    margin-top:auto !important;
+    padding:22px !important;
+    min-height:0 !important;
+    display:block !important;
+  }
+
+  /* Same heading size across READ / BUILD / GROW / WEAR / OVERCOME */
+  .tool-card .tool-overlay h3{
+    margin:0 !important;
+    font-size:clamp(18px,5.8vw,26px) !important;
+    line-height:.95 !important;
+    letter-spacing:-.055em !important;
+  }
+
+  /* Keep OVERCOME on one line */
+  .tool-card:nth-child(5) h3{
+    white-space:nowrap !important;
+    overflow-wrap:normal !important;
+  }
+
+  /* Keep WEAR using the same text positioning as every other card */
+  .tool-card:nth-child(4) .tool-overlay{
+    margin-top:auto !important;
+    padding:22px !important;
+  }
+
+  /* Remove any prior mobile artwork nudges on WEAR */
+  .tool-card:nth-child(4) > img{
+    left:0 !important;
+    top:0 !important;
+    width:100% !important;
+    height:100% !important;
+  }
+}
+</style>
+
+
+<style>
+/* SOG MOBILE — ALIGN WEAR/APPEARL WITH GROW/CHALLENGES */
+@media(max-width:720px){
+  /* Match the WEAR text block's vertical start to GROW */
+  .tool-card:nth-child(4) .tool-overlay{
+    transform:translateY(-42px) !important;
+  }
+
+  /* Keep the title/subtitle relationship identical */
+  .tool-card:nth-child(4) .tool-overlay h3{
+    margin-bottom:10px !important;
+  }
+}
+</style>
+
+</head>
+<body>
+<div class="site-shell">
+<header>
+  <a class="brand" href="index.html" aria-label="House of Yeshua home"><img class="brand-logo" src="images/sog-01-54617f2153.webp" alt="House of Yeshua"></a>
+  <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#collections">Rooms</a>
+      <a href="ethos.html">About Us / Ethos</a>
+    </nav>
+  <a class="cart" href="#">Cart (0)</a>
+<button class="site-menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button></header>
+<div class="site-mobile-menu" aria-hidden="true">
+  <a href="index.html">Home</a>
+  <a href="index.html#collections">Rooms</a>
+  <a href="ethos.html">About Us / Ethos</a>
+</div>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="kicker">Room 02</div>
+    <h1>SONS<br>OF GOD.</h1>
+    <div class="hero-sub">For men after His heart.</div>
+    <p>Resources, tools and real conversations for men who want to grow, lead and live with purpose.</p>
+    <a class="btn" href="#explore">Explore the room ↓</a>
+  </div>
+  <div class="hero-visual image-hero"><img src="images/sog-02-3f41266b54.webp" alt="Man in an H.O.Y. cap praying over books beside an H.O.Y. mug"></div></section>
+
+<section class="anchor">
+  <div>
+    <div class="eyebrow">Anchor Scripture</div>
+    <h2>BE STRONG AND COURAGEOUS.</h2>
+    <blockquote>“Do not be afraid or discouraged, for the Lord your God is with you wherever you go.”</blockquote>
+    <cite>Joshua 1:9 · NIV</cite>
+  </div>
+  <div class="anchor-side">Same truth.<br>A bolder you.</div>
+</section>
+
+<section class="explore" id="explore">
+  <div class="explore-top"><span>Explore</span><span>Real tools. A higher standard.</span></div>
+  <div class="tool-grid"><a class="tool-card image-tool" href="#"><img src="images/sog-03-4af6bec036.webp" alt="read visual"><div class="tool-overlay"><h3>READ</h3><span>Bibles & study tools</span></div></a><a class="tool-card image-tool" href="#"><img src="images/sog-04-9aebab456c.webp" alt="build visual"><div class="tool-overlay"><h3>BUILD</h3><span>Discipline & habits</span></div></a><a class="tool-card image-tool" href="#"><img src="images/sog-05-e1bff92e11.webp" alt="grow visual"><div class="tool-overlay"><h3>GROW</h3><span>Challenges for men</span></div></a><a class="tool-card image-tool" href="#"><img src="images/sog-06-73d07bc6ea.webp" alt="wear visual"><div class="tool-overlay"><h3>WEAR</h3><span>Apparel</span></div></a><a class="tool-card image-tool" href="#"><img src="images/sog-07-a3bd96af48.webp" alt="overcome visual"><div class="tool-overlay"><h3>OVERCOME</h3><span>Real conversations</span></div></a></div></section>
+
+<section class="iron iron-image"><img src="images/sog-08-430b821ed1.webp" alt="Man overlooking mountains"><div class="iron-shade"></div><div class="iron-copy"><div class="small">A higher standard.</div><h2>IRON<br>SHARPENS IRON.</h2><div class="verse">Proverbs 27:17</div></div><div class="iron-side"><p>Better men.<br>Stronger homes.<br>Brighter generations.</p></div></section>
+
+<section class="join">
+  <div class="phone-card phone-image-card"><img src="images/sog-09-252261314a.webp" alt="H.O.Y. phone with discipline message"></div>
+  <div class="join-copy">
+    <div class="small">Stay connected</div>
+    <h3>FAITH. FOCUS. BROTHERHOOD.</h3>
+    <p>Be the first to know about new resources, challenges and what’s dropping in the Sons of God room.</p>
+    <div class="newsletter"><input type="email" placeholder="YOUR EMAIL"><button>Join →</button></div>
+  </div>
+  <div class="seal">More than a feeling.<br>A higher standard.<br><br>H.O.Y.</div>
+</section>
+
+<footer><span>© 2026 House of Yeshua</span><span>Sons of God · Room 02</span></footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const btn=document.querySelector('.site-menu-btn');
+  const menu=document.querySelector('.site-mobile-menu');
+  if(!btn||!menu)return;
+  btn.addEventListener('click',function(){
+    const open=menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    menu.setAttribute('aria-hidden',open?'false':'true');
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-hidden','true');
+  }));
+});
+</script>
+
+</body>
+</html>
